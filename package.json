@@ -1,0 +1,41 @@
+{
+  "name": "",
+  "version": "",
+  "description": "",
+  "author": "",
+  "license": "",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+     "test": "jest",
+  "test:watch": "jest --watch",
+  "server-dev": "nodemon server/index.js"
+
+  },
+
+  "jest": {
+  "setupTestFrameworkScriptFile": "<rootDir>__tests__/setup/setupEnzyme.js",
+  "testPathIgnorePatterns": ["<rootDir>/__tests__/setup/"]
+},
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "enzyme-to-json": "^3.3.5",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "jest": "^24.1.0",
+    "mocha": "^5.2.0",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  }
+}
