@@ -1,9 +1,11 @@
 const express = require('express');
-let app = express();
-app.use(express.static(__dirname + '/../client'));
+const app = express();
+const db = require('../db/index.js')
+app.use(express.static(__dirname + '/../client/dist'));
 
 
-// will need a get request to the database in order to retreive video info.
+// will need to handle a get request to the database in order to retreive video info
+//and display on our page.
 
 
 

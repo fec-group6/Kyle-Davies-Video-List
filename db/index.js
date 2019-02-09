@@ -1,21 +1,37 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+mongoose.connect('mongodb://localhost/videoList');
 var db = mongoose.connection
+mongoose.Promise = global.Promise
 db.on('error', console.error.bind(console, 'connection error:')); 
 db.once('open', function() { 
   console.log('DATABASE OPEN'); 
 });
 
 
-let videoListSchema = mongoose.Schema({
+const videoListSchema = new mongoose.Schema({
   videoID: String,
-  VideoName: String,
-  creatorName: String,
+  videoName: String,
+  channelTitle: String,
+  thumbnail: String,
+  })
+
+const Video = mongoose.model('Video', videoListSchema);
 
 
-})
+let save = (videos) => {
+  console.log('save is running')
 
-let Video = mongoose.model('Video', videoListSchema);
+  for (var i = 0; i < videos.length; i++) {
+    var current = videos[i]
+
+    var data = new Video()
+      data.videoID = current.id.videoId,
+      data.videoName = current.snippet.title,
+      data.channelTitle = current.snippet.channelTitle,
+      data.thumbnail = current.snippet.thumbnails.default.url
+      data.save(() => {})
+  }
+};
 
 
 
@@ -25,9 +41,5 @@ let Video = mongoose.model('Video', videoListSchema);
 
 
 
-
-
-
-
-
+module.exports.save = save;
 module.exports.Video = Video;

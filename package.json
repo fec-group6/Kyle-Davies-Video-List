@@ -9,18 +9,22 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-     "test": "jest",
-  "test:watch": "jest --watch",
-  "server-dev": "nodemon server/index.js"
-
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "server-dev": "nodemon server/index.js",
+    "react-dev": "webpack -d --watch"
   },
-
   "jest": {
-  "setupTestFrameworkScriptFile": "<rootDir>__tests__/setup/setupEnzyme.js",
-  "testPathIgnorePatterns": ["<rootDir>/__tests__/setup/"]
-},
+    "setupTestFrameworkScriptFile": "<rootDir>__tests__/setup/setupEnzyme.js",
+    "testPathIgnorePatterns": [
+      "<rootDir>/__tests__/setup/"
+    ]
+  },
   "dependencies": {
-    "express": "^4.16.4"
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
+    "jquery": "^3.3.1",
+    "mongoose": "^5.4.10"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
