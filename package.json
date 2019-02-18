@@ -8,20 +8,24 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "seed": "node seed.js",
     "build": "webpack --mode production",
-    "test": "jest",
+    "test":  "NODE_ENV=test jest --watchAll",
     "test:watch": "jest --watch",
     "server-dev": "nodemon server/index.js",
     "react-dev": "webpack -d --watch"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>__tests__/setup/setupEnzyme.js",
+    "setupFilesAfterEnv": [
+      "<rootDir>/App.test.js"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>/__tests__/setup/"
     ]
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap": "^4.3.0",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
     "mongoose": "^5.4.10"
@@ -39,6 +43,7 @@
     "mocha": "^5.2.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "supertest": "^3.4.2",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3"
   }

@@ -2,32 +2,79 @@ import React from "react";
 import ReactDOM from "react-dom";
 import bar from './bar';
 import VideoList from './list-component.jsx';
-
+import $ from 'jquery';
 bar();
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
+      videos: [],
     }
+    this.updateVideos = this.updateVideos.bind(this);
   }
+
+
+  componentDidMount() {
+    $.ajax({
+      url: 'http://127.0.0.1:3000/videos',
+      type: 'GET',
+      success: (data)=>{
+          this.setState({ videos: data })
+    }
+  })
+}
 
   fetch() {
-    // this method will be used to set the intital state / display first batch of videos.
-    //will also be ran on click of 'see more videos' to add the videos listed. Max?
+    $.ajax({
+      url: 'http://127.0.0.1:3000/videos',
+      type: 'GET',
+      success: (data)=>{
+          this.setState({
+            videos: data
 
+          });
+
+        }
+
+    })
   }
+
+
+  updateVideos() {
+
+    $.ajax({
+      url: 'http://127.0.0.1:3000/videos',
+      type: 'GET',
+      success: (data)=>{
+        this.setState({
+          videos: [
+          ...this.state.videos,
+          ...data
+          ]
+        })
+
+
+        }
+
+    })
+  }
+
 
   render() {
     return (
-      < div >
+      <div>
        <h1> Rendering through react</h1>
-
-       <VideoList />
+       <VideoList videos={this.state.videos} onClick ={this.updateVideos}/>
        </div>
         )
    }
 }
 
-    ReactDOM.render(<App/>, document.getElementById("app"));
+    export default App;
+
+    ReactDOM.render(<App/>, document.getElementById("app-test") || document.createElement('div'));
+
+
+

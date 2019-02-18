@@ -1,3 +1,15 @@
-// Here we wil be building the model for individual videos inside of our list.
-//However - they will ultimately be created and rendered frm inside our list-component.jsx file
-//when looping through our db of videos.
+import React from 'React';
+
+
+const Video = (props)=> (
+
+    <div className="video-list-entry">
+      <img className="video-thumbnail" src={props.video.thumbnail} />
+    <div className='title-and-channel'>
+      <div className="video-list-entry-title">{props.video.videoName} </div>
+      <div className="video-list-entry-channel">{props.video.channelTitle}</div>
+    </div>
+    </div>
+);
+
+export default Video;

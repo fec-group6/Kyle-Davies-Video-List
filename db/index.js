@@ -18,6 +18,13 @@ const videoListSchema = new mongoose.Schema({
 const Video = mongoose.model('Video', videoListSchema);
 
 
+let fetch = () =>{
+
+  let query = Video.aggregate([{ $sample: { size: 10 } }] );
+  return query.exec();
+
+}
+
 let save = (videos) => {
   console.log('save is running')
 
@@ -38,8 +45,8 @@ let save = (videos) => {
 
 
 
-
-
-
+module.exports.db = db;
+module.exports.mongoose = mongoose;
+module.exports.fetch= fetch;
 module.exports.save = save;
 module.exports.Video = Video;
